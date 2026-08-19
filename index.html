@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-title="title">Age Calculator | Exact Age in Years, Months & Days</title>
+  <meta name="description" content="Free online Age Calculator. Calculate exact age from date of birth in years, months and days. Next birthday countdown, total days, weeks & months. Leap-year accurate. Mobile-friendly.">
+  <meta name="keywords" content="Age Calculator, Calculate Age, Date of Birth Calculator, How Old Am I, Age Calculator by Date of Birth, Birthday Calculator, Exact Age Calculator">
+  <meta name="author" content="Yusuf Jamshed">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/age-calculator/">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Age Calculator – Exact Age in Years, Months & Days">
+  <meta property="og:description" content="Calculate your exact age instantly. Next birthday countdown, total days, weeks & months. Free & accurate.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/age-calculator/">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Age Calculator – Exact Age Calculator">
+  <meta name="twitter:description" content="Free Age Calculator with birthday countdown and leap-year support.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Age Calculator",
+    "description": "Free online tool to calculate exact age from date of birth in years, months and days with birthday countdown.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Yusuf Jamshed" }
+  }
+  </script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🎂</span>
+        <span data-i18n="title">Age Calculator</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" class="active" data-i18n="navHome">Calculator</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="faq.html" data-i18n="navFaq">FAQ</a>
+        <a href="privacy.html" data-i18n="navPrivacy">Privacy</a>
+      </nav>
+      <div class="header-actions">
+        <select id="langSelect" class="lang-select" aria-label="Language"></select>
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">☀️</button>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1 data-i18n="title">Age Calculator</h1>
+      <p data-i18n="subtitle">Calculate your exact age in years, months & days. Find next birthday & countdown.</p>
+    </section>
+
+    <!-- Top Ad Slot (non-intrusive) -->
+    <div class="ad-slot leaderboard" aria-hidden="true">
+      <span>728×90 / Responsive Banner – AdSense / Adsterra</span>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="calc-wrapper">
+      <!-- Input Card -->
+      <div class="card">
+        <h2 class="card-title">📅 <span data-i18n="title">Age Calculator</span></h2>
+        <div class="form-group">
+          <label for="dob" data-i18n="dobLabel">Date of Birth</label>
+          <input type="date" id="dob" required>
+        </div>
+        <div class="form-group">
+          <label for="targetDate" data-i18n="targetLabel">Calculate Age On (optional)</label>
+          <input type="date" id="targetDate">
+          <small style="color:var(--text-muted);font-size:0.8rem;display:block;margin-top:0.35rem;" data-i18n="targetHint">Leave empty for today</small>
+        </div>
+        <div id="errorBox" style="display:none;color:#ef4444;font-size:0.9rem;margin-bottom:0.75rem;"></div>
+        <button id="calcBtn" class="btn-primary" data-i18n="calcBtn">Calculate Age</button>
+      </div>
+
+      <!-- Results Card -->
+      <div class="card">
+        <h2 class="card-title">✨ <span data-i18n="exactAge">Exact Age</span></h2>
+        <div id="results" class="results">
+          <div class="result-main">
+            <div class="years" id="resYears">0</div>
+            <div class="years-label" data-i18n="years">Years</div>
+            <div class="exact" id="resExact">0 years, 0 months, 0 days</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-item">
+              <div class="value" id="resYMD_Y">0</div>
+              <div class="label" data-i18n="years">Years</div>
+            </div>
+            <div class="result-item">
+              <div class="value" id="resYMD_M">0</div>
+              <div class="label" data-i18n="months">Months</div>
+            </div>
+            <div class="result-item">
+              <div class="value" id="resYMD_D">0</div>
+              <div class="label" data-i18n="days">Days</div>
+            </div>
+            <div class="result-item">
+              <div class="value" id="resMonths">0</div>
+              <div class="label" data-i18n="totalMonths">Total Months</div>
+            </div>
+            <div class="result-item">
+              <div class="value" id="resWeeks">0</div>
+              <div class="label" data-i18n="totalWeeks">Total Weeks</div>
+            </div>
+            <div class="result-item">
+              <div class="value" id="resDays">0</div>
+              <div class="label" data-i18n="totalDays">Total Days</div>
+            </div>
+          </div>
+          <div class="birthday-box">
+            <div class="title" data-i18n="nextBday">Next Birthday</div>
+            <div class="countdown" id="countdownText">—</div>
+            <div class="date" id="nextBdayDate">—</div>
+          </div>
+        </div>
+        <div id="resultsPlaceholder" style="text-align:center;color:var(--text-muted);padding:2rem 1rem;">
+          <p style="font-size:2.5rem;margin-bottom:0.5rem;">🎂</p>
+          <p data-i18n="subtitle">Enter your date of birth and calculate</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mid Ad Slot -->
+    <div class="ad-slot rectangle" aria-hidden="true">
+      <span>300×250 Medium Rectangle – Place Ad Code Here</span>
+    </div>
+
+    <!-- SEO Content -->
+    <section class="section">
+      <h2 data-i18n="howItWorks">How It Works</h2>
+      <p>Our free Age Calculator uses precise date arithmetic that correctly handles leap years, month lengths, and edge cases (such as February 29 birthdays). Simply enter your date of birth — optionally choose any past or future reference date — and instantly see:</p>
+      <ul>
+        <li><strong>Exact age</strong> in years, months and days</li>
+        <li><strong>Total months, weeks and days</strong> lived</li>
+        <li><strong>Next birthday</strong> date and countdown in days</li>
+      </ul>
+      <p>All calculations run entirely in your browser. No data is sent to any server.</p>
+    </section>
+
+    <section class="section">
+      <h2 data-i18n="features">Features</h2>
+      <ul>
+        <li>📅 Date of birth input with calendar picker</li>
+        <li>📅 Calculate age on any selected date</li>
+        <li>🎂 Exact age in years, months, days</li>
+        <li>⏳ Total months · 📆 Total weeks · 🕐 Total days</li>
+        <li>🎉 Next birthday + birthday countdown</li>
+        <li>✅ Full leap-year handling (including Feb 29)</li>
+        <li>📱 Fully mobile-responsive design</li>
+        <li>🌙 Dark / Light theme toggle</li>
+        <li>🌍 Multi-language support (20+ languages)</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Why Use This Age Calculator?</h2>
+      <p>Whether you need to know “How old am I?” for a form, plan a birthday party, calculate age difference, or simply satisfy curiosity, this tool delivers accurate results in one click. It is optimized for speed, accessibility and SEO, targeting keywords such as <em>Age Calculator</em>, <em>Calculate Age</em>, <em>Date of Birth Calculator</em>, <em>How Old Am I</em>, and <em>Exact Age Calculator</em>.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">🎂</span> Age Calculator</div>
+        <p data-i18n="footerTagline">Fast, accurate & free age calculator. Built for the modern web.</p>
+        <p style="margin-top:0.75rem;font-weight:600;" data-i18n="createdBy">Created by Yusuf Jamshed</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html" data-i18n="navHome">Calculator</a></li>
+          <li><a href="about.html" data-i18n="navAbout">About</a></li>
+          <li><a href="faq.html" data-i18n="navFaq">FAQ</a></li>
+          <li><a href="privacy.html" data-i18n="navPrivacy">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="index.html">Age Calculator</a></li>
+          <li><a href="index.html">Birthday Countdown</a></li>
+          <li><a href="index.html">Date of Birth Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="about.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Age Calculator · <span data-i18n="createdBy">Created by Yusuf Jamshed</span></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Hide placeholder when results show
+    const obs = new MutationObserver(() => {
+      const res = document.getElementById('results');
+      const ph = document.getElementById('resultsPlaceholder');
+      if (res && ph) ph.style.display = res.classList.contains('visible') ? 'none' : 'block';
+    });
+    const resEl = document.getElementById('results');
+    if (resEl) obs.observe(resEl, { attributes: true, attributeFilter: ['class'] });
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>
